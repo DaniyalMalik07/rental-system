@@ -13,10 +13,10 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= render 'layouts/sidebar' %>
-      <div class="p-4 sm:ml-64"> <!-- Adjust the width as needed -->
+      <div class="p-4 sm:ml-64">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <%= yield %>
       </div>
     </main>
