@@ -12,13 +12,17 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= render 'layouts/sidebar' %>
-      <div class="p-4 sm:ml-64">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <%= yield %>
-      </div>
-    </main>
+    <% if admin_signed_in? %>
+      <main class="container mx-auto mt-28 px-5 flex">
+        <%= render 'layouts/sidebar' %>
+        <div class="p-4 sm:ml-64">
+          <%= render 'layouts/notifications' %>
+          <%= yield %>
+        </div>
+      </main>
+    <% else %>
+      <%= render 'layouts/notifications' %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
