@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :properties
   get 'dashboard/index'
   devise_for :admins, skip: [:registration]
   root 'dashboard#index'

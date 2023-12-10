@@ -13,13 +13,13 @@
 
   <body>
     <% if admin_signed_in? %>
-      <main class="container mx-auto mt-28 px-5 flex">
+      <div class="m-5">
         <%= render 'layouts/sidebar' %>
-        <div class="p-4 sm:ml-64">
+        <div class="sm:ml-64">
           <%= render 'layouts/notifications' %>
           <%= yield %>
         </div>
-      </main>
+      </div>
     <% else %>
       <%= render 'layouts/notifications' %>
       <%= yield %>
