@@ -13,7 +13,7 @@
 
   <div class="my-5">
     <%= form.label :lease_id %>
-    <%= form.number_field :lease_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :lease_id, properties_on_lease(), {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
   <div class="my-5">
@@ -28,12 +28,12 @@
 
   <div class="my-5">
     <%= form.label :payment_method %>
-    <%= form.number_field :payment_method, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :payment_method, payment_methods(), {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
   <div class="my-5">
     <%= form.label :month %>
-    <%= form.number_field :month, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :month, month_options(), {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
   <div class="my-5">
