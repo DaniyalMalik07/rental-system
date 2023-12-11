@@ -45,10 +45,10 @@
               <%= lease.end_date.strftime('%b %d %Y') %>
             </td>
             <td class="px-6 py-4">
-              <%= lease.rent_amount %>
+              &pound;<%= lease.rent_amount %>
             </td>
             <td class="px-6 py-4">
-              <%= lease.advance_amount %>
+              &pound;<%= lease.advance_amount %>
             </td>
             <td class="px-6 py-4">
               <%= link_to "view", lease, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
