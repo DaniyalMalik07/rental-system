@@ -1,25 +1,28 @@
 <div class="flex justify-between items-center mb-4">
-  <h1 class="font-bold text-4xl">Properites</h1>
-  <%= link_to "New Property", new_property_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <h1 class="font-bold text-4xl">Leases</h1>
+  <%= link_to "New Lease", new_lease_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500">
     <thead class="text-xs uppercase bg-gray-50 dark:bg-blue-700 text-white">
       <tr>
         <th scope="col" class="px-6 py-3">
-          Address
+          Property
         </th>
         <th scope="col" class="px-6 py-3">
-          Advance Amount
+          Tenant
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Start Date
+        </th>
+        <th scope="col" class="px-6 py-3">
+          End Date
         </th>
         <th scope="col" class="px-6 py-3">
           Rent Amount
         </th>
         <th scope="col" class="px-6 py-3">
-          Status
-        </th>
-        <th scope="col" class="px-6 py-3">
-          Owner
+          Advance Amount
         </th>
         <th scope="col" class="px-6 py-3">
           Actions
@@ -27,27 +30,28 @@
       </tr>
     </thead>
       <tbody>
-        <% @properties.each do |property| %>
+        <% @leases.each do |lease| %>
           <tr class="bg-white border-b">
             <td class="px-6 py-4">
-              <%= property.address %>
+              <%= lease.property.address %>
             </td>
             <td class="px-6 py-4">
-              <%= property.advance_amount %>
+              <%= lease.tenant.full_name %>
             </td>
             <td class="px-6 py-4">
-              <%= property.rent_amount %>
+              <%= lease.start_date.strftime('%b %d %Y') %>
             </td>
             <td class="px-6 py-4">
-              <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                <%= property.status.humanize %>
-              </span>
+              <%= lease.end_date.strftime('%b %d %Y') %>
             </td>
             <td class="px-6 py-4">
-              <%= link_to property.owner.full_name, user_path(property.owner) %>
+              <%= lease.rent_amount %>
             </td>
             <td class="px-6 py-4">
-              <%= link_to "view", property, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
+              <%= lease.advance_amount %>
+            </td>
+            <td class="px-6 py-4">
+              <%= link_to "view", lease, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
             </td>
           </tr>
         <% end %>

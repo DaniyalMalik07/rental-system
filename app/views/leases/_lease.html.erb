@@ -1,0 +1,32 @@
+<div id="<%= dom_id lease %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Property:</strong>
+    <%= lease.property_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Tenant:</strong>
+    <%= lease.tenant_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Start date:</strong>
+    <%= lease.start_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">End date:</strong>
+    <%= lease.end_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Rent amount:</strong>
+    <%= lease.rent_amount %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this lease", lease, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this lease", edit_lease_path(lease), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
