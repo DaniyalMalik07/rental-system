@@ -1,5 +1,41 @@
+<div class="flex">
+  <div class="flex-1 m-2">
+    <%= link_to users_path, class: "dashboard-cards m-2 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Number of Users</h5>
+      <h1 class="font-normal text-gray-700 dark:text-gray-400 dashboard-dynamic-values"><%= User.count %></h1>
+    <% end %>
+  </div>
+  <div class="flex-1 m-2">
+    <%= link_to properties_path, class: "dashboard-cards m-2 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Number of Properties</h5>
+      <h1 class="font-normal text-gray-700 dark:text-gray-400 dashboard-dynamic-values"><%= Property.count %></h1>
+    <% end %>
+  </div>
+  <div class="flex-1 m-2">
+    <%= link_to leases_path, class: "dashboard-cards m-2 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Properties on Lease</h5>
+      <h1 class="font-normal text-gray-700 dark:text-gray-400 dashboard-dynamic-values"><%= Lease.count %></h1>
+    <% end %>
+  </div>
+</div>
 
-<a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-  <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-</a>
+<div class="flex">
+  <div class="flex-1 m-2">
+    <%= link_to payments_path, class: "dashboard-cards m-2 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Payments</h5>
+      <h1 class="font-normal text-gray-700 dark:text-gray-400 dashboard-dynamic-values">&pound;<%= Payment.pluck(:amount).sum %></h1>
+    <% end %>
+  </div>
+  <div class="flex-1 m-2">
+    <%= link_to properties_path, class: "dashboard-cards m-2 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Properties on Hold</h5>
+      <h1 class="font-normal text-gray-700 dark:text-gray-400 dashboard-dynamic-values"><%= Property.where(status: 2).count %></h1>
+    <% end %>
+  </div>
+  <div class="flex-1 m-2">
+    <%= link_to leases_path, class: "dashboard-cards m-2 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Rented Properties</h5>
+      <h1 class="font-normal text-gray-700 dark:text-gray-400 dashboard-dynamic-values"><%= Property.where(status: 1).count %></h1>
+    <% end %>
+  </div>
+</div>

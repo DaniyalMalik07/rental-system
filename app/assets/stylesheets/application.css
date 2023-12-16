@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.dashboard-cards {
+  margin: 20px !important;
+}
+
+.dashboard-dynamic-values {
+  font-size: 50px;
+  color: white;
+}
