@@ -1,8 +1,16 @@
+# frozen_string_literal: true
+
+require 'csv'
+
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
     @users = User.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(@users), filename: "all-users-#{Date.today}.csv" }
+    end
   end
 
   def show; end
@@ -56,5 +64,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :dob, :address, :phone_number, :email)
+  end
+
+  def generate_csv(users)
+    CSV.generate(headers: true) do |csv|
+      csv << ['ID', 'First Name', 'Last Name', 'Email', 'Phone Number', 'Date of Birth']
+      users.each do |user|
+        csv << [user.id, user.first_name, user.last_name, user.email, user.phone_number, user.dob.strftime('%b %d %Y')]
+      end
+    end
   end
 end
