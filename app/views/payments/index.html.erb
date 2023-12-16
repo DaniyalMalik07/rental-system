@@ -1,5 +1,6 @@
 <div class="flex justify-between items-center mb-4">
   <h1 class="font-bold text-4xl">Payments</h1>
+  <%= link_to "Download Payments CSV", payments_path(format: :csv), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   <%= link_to "New Payment", new_payment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
