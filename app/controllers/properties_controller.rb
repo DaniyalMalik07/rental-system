@@ -1,8 +1,15 @@
+# frozen_string_literal: true
+
+require 'csv'
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
 
   def index
     @properties = Property.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(@properties), filename: "all-properties-#{Date.today}.csv" }
+    end
   end
 
   def show; end
@@ -48,5 +55,15 @@ class PropertiesController < ApplicationController
 
   def property_params
     params.require(:property).permit(:address, :advance_amount, :rent_amount, :status, :owner_id, images: [])
+  end
+
+  def generate_csv(properties)
+    CSV.generate(headers: true) do |csv|
+      csv << ['ID', 'Address', 'Advance Amount', 'Rent Amount', 'Owner', 'Status']
+      properties.each do |property|
+        csv << [property.id, property.address, property.advance_amount, property.rent_amount, property.owner.full_name,
+                property.status.humanize]
+      end
+    end
   end
 end
