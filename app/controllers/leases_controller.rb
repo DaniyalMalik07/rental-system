@@ -1,9 +1,15 @@
-class LeasesController < ApplicationController
-  before_action :set_lease, only: %i[ show edit update destroy ]
+# frozen_string_literal: true
 
-  # GET /leases or /leases.json
+require 'csv'
+class LeasesController < ApplicationController
+  before_action :set_lease, only: %i[show edit update destroy]
+
   def index
     @leases = Lease.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(@leases), filename: "all-leases-#{Date.today}.csv" }
+    end
   end
 
   def show; end
@@ -19,7 +25,7 @@ class LeasesController < ApplicationController
 
     respond_to do |format|
       if @lease.save
-        format.html { redirect_to lease_url(@lease), notice: "Lease was successfully created." }
+        format.html { redirect_to lease_url(@lease), notice: 'Lease was successfully created.' }
         format.json { render :show, status: :created, location: @lease }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,5 +65,15 @@ class LeasesController < ApplicationController
 
   def lease_params
     params.require(:lease).permit(:property_id, :tenant_id, :start_date, :end_date, :rent_amount, :advance_amount)
+  end
+
+  def generate_csv(leases)
+    CSV.generate(headers: true) do |csv|
+      csv << ['ID', 'Property', 'Tenant', 'Start Date', 'End Date', 'Rent Amount', 'Advance Amount']
+      leases.each do |lease|
+        csv << [lease.id, lease.property.address, lease.tenant.full_name, lease.start_date.strftime('%b %d %Y'),
+                lease.end_date.strftime('%b %d %Y'), lease.rent_amount, lease.advance_amount]
+      end
+    end
   end
 end
